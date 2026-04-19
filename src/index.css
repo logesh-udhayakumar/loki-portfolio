@@ -17,6 +17,7 @@
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   --glow-primary: 0 0 20px rgba(121, 40, 202, 0.5);
   --glow-secondary: 0 0 20px rgba(255, 0, 128, 0.5);
+  --padding-x: 24px;
 }
 
 * {
@@ -149,7 +150,7 @@ button, input, textarea {
 .page-container {
   min-height: 100vh;
   width: 100%;
-  padding: 100px 20px 40px; /* Top padding for fixed nav */
+  padding: 100px var(--padding-x) 40px; /* Top padding for fixed nav */
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -159,7 +160,7 @@ button, input, textarea {
 
 @media (max-width: 768px) {
   .page-container {
-    padding: 80px 24px 30px;
+    padding: 80px var(--padding-x) 30px;
   }
 }
 

@@ -60,8 +60,8 @@ const Home = () => {
           {/* Foreground Text Details */}
           <motion.div
             className="hero-content"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.h2
@@ -141,7 +141,7 @@ const Home = () => {
           </motion.div>
         </div>
 
-        {/* About Module (smooth entrance) a*/}
+        {/* About Module (smooth entrance) */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -203,8 +203,9 @@ const Home = () => {
           padding: 60px;
         }
         @media (max-width: 768px) {
-          .hero-container { justify-content: center; overflow: hidden; margin: 0 -24px; width: calc(100% + 48px); }
-          .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 24px; }
+          .hero-container { justify-content: center; overflow: visible; width: 100%; margin: 0; }
+          .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0; width: 100%; gap: 10px; }
+          .hero-content h1, .hero-content h2, .hero-content p { text-align: center; }
           .hero-content a { justify-content: center; }
           .about-card { padding: 30px 20px; }
           .hero-3d-bg {
