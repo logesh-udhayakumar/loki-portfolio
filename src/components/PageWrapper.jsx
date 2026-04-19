@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Breadcrumbs from './Breadcrumbs';
 
 const pageVariants = {
   initial: {
@@ -36,6 +37,7 @@ const PageWrapper = ({ children, className = "" }) => {
       variants={pageVariants}
       className={`page-container ${className}`}
     >
+      <Breadcrumbs />
       {children}
     </motion.div>
   );

@@ -136,7 +136,7 @@ const Home = () => {
             >
               <a href="https://github.com/logesh-udhayakumar" target="_blank" rel="noreferrer" className="social-icon"><FaGithub size={24} /></a>
               <a href="https://www.linkedin.com/in/logesh-udhayakumar/" target="_blank" rel="noreferrer" className="social-icon"><FaLinkedin size={24} /></a>
-              <a href="/contact" className="social-icon"><Mail size={24} /></a>
+              <Link to="/contact" className="social-icon"><Mail size={24} /></Link>
             </motion.div>
           </motion.div>
         </div>
@@ -147,8 +147,8 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          style={{ marginTop: '100px', padding: '40px', background: 'var(--color-surface)', borderRadius: '24px', border: '1px solid var(--color-border)' }}
-          className="glass"
+          style={{ marginTop: '100px', background: 'var(--color-surface)', borderRadius: '24px', border: '1px solid var(--color-border)' }}
+          className="glass about-card"
         >
           <h2 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>About <span className="text-gradient-accent">Me</span></h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '30px' }}>
@@ -199,10 +199,14 @@ const Home = () => {
         .social-icon { color: var(--color-text-secondary); transition: color 0.3s, transform 0.3s; }
         .social-icon:hover { color: var(--color-primary); transform: translateY(-3px); }
         .stat-card { padding: 15px 20px; background: rgba(0,0,0,0.2); border-left: 4px solid var(--color-primary); border-radius: 8px; }
+        .about-card {
+          padding: 60px;
+        }
         @media (max-width: 768px) {
-          .hero-container { justify-content: center; }
-          .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+          .hero-container { justify-content: center; overflow: hidden; margin: 0 -24px; width: calc(100% + 48px); }
+          .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 24px; }
           .hero-content a { justify-content: center; }
+          .about-card { padding: 30px 20px; }
           .hero-3d-bg {
             top: 50%;
             left: 50%;

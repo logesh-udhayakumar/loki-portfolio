@@ -55,7 +55,7 @@ const Navbar = () => {
           alignItems: 'center',
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '0 20px'
+          padding: '0 min(5vw, 24px)'
         }}>
           {/* Logo */}
           <NavLink to="/" style={{
