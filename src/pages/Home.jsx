@@ -141,7 +141,7 @@ const Home = () => {
           </motion.div>
         </div>
 
-        {/* About Module (smooth entrance) */}
+        {/* About Module (smooth entrance) a*/}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
