@@ -287,46 +287,48 @@ const Home = () => {
           /* Hide heavy 3D canvas on mobile */
           .hero-3d-bg { display: none !important; }
 
-          /* CSS orb replaces the canvas */
+          /* CSS orb — subtle glow, safely inside viewport */
           .hero-orb-mobile {
             display: block;
             position: absolute;
-            top: 25%;
-            right: -60px;
-            width: 240px;
-            height: 240px;
+            top: 10%;
+            right: -40px;           /* less bleed so it stays visible */
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             background: radial-gradient(circle at 40% 40%, #7928ca, #ff0080 70%, transparent);
-            filter: blur(55px);
-            opacity: 0.3;
+            filter: blur(60px);
+            opacity: 0.25;
             z-index: 0;
             pointer-events: none;
           }
 
-          /* Hero fills viewport so About Me stays below fold */
+          /* RE-ENABLE pointer events on mobile — no canvas here, no need to pass through */
           .hero-wrapper {
             min-height: calc(100vh - 70px);
             align-items: flex-start;
             padding-top: 16px;
+            pointer-events: auto !important;
           }
           .hero-content {
-            width: 100%;
+            width: 100% !important;
             align-items: center;
             text-align: center;
+            pointer-events: auto !important;
           }
           .hero-content p { font-size: 0.95rem !important; max-width: 100% !important; }
 
-          /* Buttons: stack full-width centered */
+          /* Buttons: equal-width, stacked, centered */
           .hero-buttons {
             flex-direction: column;
-            align-items: stretch;
+            align-items: center;
             width: 100%;
-            max-width: 280px;
+            max-width: 260px;
             gap: 10px;
           }
           .btn-primary,
           .btn-secondary {
-            width: 100%;
+            width: 260px !important;
             justify-content: center;
             padding: 14px 20px;
           }
