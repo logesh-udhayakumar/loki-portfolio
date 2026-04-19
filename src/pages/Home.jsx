@@ -122,7 +122,7 @@ const Home = () => {
                 alignItems: 'center',
                 gap: '8px',
                 transition: 'all 0.2s'
-              }} className="hover-glass">
+              }} className="hover-glass resume-btn">
                 Resume <Download size={20} />
               </Link>
             </motion.div>
@@ -203,18 +203,49 @@ const Home = () => {
           padding: 60px;
         }
         @media (max-width: 768px) {
-          .hero-container { justify-content: center; overflow: visible; width: 100%; margin: 0; }
-          .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0; width: 100%; gap: 10px; }
-          .hero-content h1, .hero-content h2, .hero-content p { text-align: center; }
-          .hero-content a { justify-content: center; }
-          .about-card { padding: 30px 20px; }
+          .hero-container { 
+            justify-content: center; 
+            min-height: 90vh; /* More space for mobile */
+            padding-top: 20px;
+          }
+          .hero-content { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
+            padding: 0 10px; 
+            width: 100%; 
+            gap: 15px; 
+          }
+          .hero-content h1 { font-size: clamp(2rem, 12vw, 3.5rem) !important; }
+          .hero-content p { font-size: 1.1rem !important; margin-bottom: 20px !important; }
+          .hero-content h2 { margin-bottom: 5px !important; }
+          
           .hero-3d-bg {
-            top: 50%;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            opacity: 0.5; /* lower opacity so text is fully readable over it */
+            width: 300px;
+            height: 300px;
+            opacity: 0.4;
+          }
+          
+          .about-card { padding: 40px 20px; margin-top: 60px !important; }
+          
+          /* Stack buttons on very small screens if they overflow */
+          .hero-content > div:nth-child(4) {
+            flex-direction: column;
+            width: 100%;
+            max-width: 280px;
+          }
+          .hero-content > div:nth-child(4) a {
+            width: 100%;
+            justify-content: center;
+          }
+          
+          .resume-btn {
+             background: rgba(255, 255, 255, 0.05) !important;
+             backdrop-filter: blur(10px);
           }
         }
       `}</style>
