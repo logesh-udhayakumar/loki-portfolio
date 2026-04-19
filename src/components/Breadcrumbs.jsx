@@ -16,21 +16,17 @@ const Breadcrumbs = () => {
       transition={{ duration: 0.5 }}
       aria-label="Breadcrumb" 
       style={{ 
-        marginBottom: '2rem',
         display: 'flex',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: '6px',
-        fontSize: 'min(0.85rem, 3.2vw)',
+        gap: '4px 6px',
+        fontSize: 'clamp(0.75rem, 3vw, 0.85rem)',
         color: 'var(--color-text-secondary)',
         width: '100%',
-        maxWidth: '1200px',
-        margin: '0 auto 2.5rem',
-        padding: '0 0 12px 0',
+        marginBottom: '2rem',
+        paddingBottom: '12px',
         borderBottom: '1px solid rgba(255,255,255,0.05)',
         boxSizing: 'border-box',
-        overflow: 'hidden', // Prevent any child from leaking out
-        textOverflow: 'ellipsis'
       }}
     >
       <Link to="/" style={{ display: 'flex', alignItems: 'center', transition: 'color 0.2s' }} className="hover-primary">

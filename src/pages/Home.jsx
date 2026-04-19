@@ -32,12 +32,12 @@ const FloatingShape = () => {
 const Home = () => {
   return (
     <PageWrapper>
-      <div style={{
+      <div className="hero-wrapper" style={{
         display: 'flex',
         flexDirection: 'column',
+        width: '100%',
         minHeight: '80vh',
         justifyContent: 'center',
-        paddingTop: '50px'
       }}>
         <div className="hero-container">
 
@@ -179,6 +179,13 @@ const Home = () => {
           min-height: 80vh;
           width: 100%;
         }
+        .hero-wrapper {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          min-height: 80vh;
+          justify-content: center;
+        }
         .hero-3d-bg {
           position: absolute;
           top: 50%;
@@ -203,40 +210,54 @@ const Home = () => {
           padding: 60px;
         }
         @media (max-width: 768px) {
-          .hero-container { 
-            justify-content: center; 
-            min-height: 90vh; /* More space for mobile */
+          .hero-wrapper {
+            min-height: auto;
+            justify-content: flex-start;
             padding-top: 20px;
+          }
+          .hero-container { 
+            justify-content: flex-start; 
+            align-items: flex-start;
+            min-height: auto;
+            overflow: hidden; /* Prevent 3D blob from bleeding out */
+            padding-top: 0;
+            padding-bottom: 40px;
           }
           .hero-content { 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             text-align: center; 
-            padding: 0 10px; 
+            padding: 0;
             width: 100%; 
-            gap: 15px; 
+            gap: 15px;
+            position: relative;
+            z-index: 10;
           }
           .hero-content h1 { font-size: clamp(2rem, 12vw, 3.5rem) !important; }
-          .hero-content p { font-size: 1.1rem !important; margin-bottom: 20px !important; }
           .hero-content h2 { margin-bottom: 5px !important; }
+          .hero-content p { font-size: 1rem !important; margin-bottom: 20px !important; }
           
+          /* On mobile: float the blob behind text within container, not absolutely outside */
           .hero-3d-bg {
-            top: 40%;
+            position: absolute;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            opacity: 0.4;
+            width: 280px;
+            height: 280px;
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
           }
           
-          .about-card { padding: 40px 20px; margin-top: 60px !important; }
+          .about-card { padding: 30px 16px; margin-top: 50px !important; }
           
           /* Stack buttons on very small screens if they overflow */
           .hero-content > div:nth-child(4) {
             flex-direction: column;
             width: 100%;
-            max-width: 280px;
+            max-width: 260px;
           }
           .hero-content > div:nth-child(4) a {
             width: 100%;
