@@ -167,6 +167,7 @@ const Home = () => {
         .home-sections {
           position: relative;
           width: 100%;
+          overflow: hidden; /* Clip canvas/orb — prevent page-wide horizontal scroll */
         }
 
         /* ── 3D Canvas — fixed square straddling hero bottom + about top ── */
@@ -287,27 +288,28 @@ const Home = () => {
           /* Hide heavy 3D canvas on mobile */
           .hero-3d-bg { display: none !important; }
 
-          /* CSS orb — subtle glow, safely inside viewport */
+          /* CSS orb — subtle glow, clipped within the container */
           .hero-orb-mobile {
             display: block;
             position: absolute;
             top: 10%;
-            right: -40px;           /* less bleed so it stays visible */
-            width: 200px;
-            height: 200px;
+            right: 0;             /* flush to right edge, no bleed */
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             background: radial-gradient(circle at 40% 40%, #7928ca, #ff0080 70%, transparent);
             filter: blur(60px);
-            opacity: 0.25;
+            opacity: 0.22;
             z-index: 0;
             pointer-events: none;
           }
 
           /* RE-ENABLE pointer events on mobile — no canvas here, no need to pass through */
           .hero-wrapper {
-            min-height: calc(100vh - 70px);
+            min-height: auto;
             align-items: flex-start;
             padding-top: 16px;
+            padding-bottom: 20px;
             pointer-events: auto !important;
           }
           .hero-content {
