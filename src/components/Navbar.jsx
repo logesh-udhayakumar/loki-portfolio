@@ -181,7 +181,7 @@ const Navbar = () => {
       <style>{`
         @media (max-width: 968px) {
           .nav-desktop { display: none !important; }
-          .mobile-toggle { display: block !important; }
+          .mobile-toggle { display: none !important; }
           .hide-mobile { display: none !important; }
         }
         @media (min-width: 969px) {

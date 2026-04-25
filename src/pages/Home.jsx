@@ -1,11 +1,20 @@
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei';
 import PageWrapper from '../components/PageWrapper';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, Mail } from 'lucide-react';
+import { ArrowRight, Download, Mail, ChevronDown } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+
+const navLinks = [
+  { path: '/', label: 'Home' },
+  { path: '/skills', label: 'Skills' },
+  { path: '/projects', label: 'Projects' },
+  { path: '/profiles', label: 'Profiles' },
+  { path: '/resume', label: 'Resume' },
+  { path: '/contact', label: 'Contact' }
+];
 
 const FloatingShape = () => {
   const meshRef = useRef();
@@ -17,7 +26,7 @@ const FloatingShape = () => {
   });
 
   return (
-    <Sphere args={[1, 100, 200]} scale={2.4} ref={meshRef}>
+    <Sphere args={[1, 100, 200]} scale={2.6} ref={meshRef}>
       <MeshDistortMaterial
         color="#7928ca"
         attach="material"
@@ -30,6 +39,20 @@ const FloatingShape = () => {
 };
 
 const Home = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <PageWrapper>
       {/*
@@ -48,7 +71,7 @@ const Home = () => {
 
         {/* 3D Canvas — absolutely positioned to span hero + about */}
         <div className="hero-3d-bg">
-          <Canvas camera={{ position: [0, 0, 5] }}>
+          <Canvas camera={{ position: [0, 0, 5.5] }}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
             <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#ff0080" />
@@ -81,10 +104,10 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              style={{ fontSize: 'clamp(2.2rem, 10vw, 5rem)', lineHeight: '1.15', marginBottom: '16px', wordBreak: 'break-word' }}
+              style={{ fontSize: 'clamp(2rem, 9vw, 4.8rem)', lineHeight: '1.1', marginBottom: '16px' }}
             >
-              Logesh<br />
-              <span className="text-gradient-primary">Udhayakumar</span>
+              <span style={{ whiteSpace: 'nowrap' }}>Logesh</span><br />
+              <span className="text-gradient-primary" style={{ whiteSpace: 'nowrap' }}>Udhayakumar</span>
             </motion.h1>
 
             <motion.p
@@ -96,6 +119,46 @@ const Home = () => {
               Builds scalable and efficient <strong style={{ color: '#fff' }}>web applications</strong> with strong backend expertise.
               Uses <strong style={{ color: '#fff' }}>AI tools</strong> to improve productivity and continuously learn new technologies.
             </motion.p>
+
+            {/* Navigation Dropdown */}
+            <motion.div
+              ref={dropdownRef}
+              className="nav-dropdown-container"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55 }}
+            >
+              <button 
+                className="dropdown-trigger"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              >
+                <span>Home</span>
+                <ChevronDown size={16} style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
+              </button>
+              
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div 
+                    className="dropdown-menu"
+                    initial={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
+                    animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {navLinks.filter(link => link.label !== 'Home').map((link) => (
+                      <Link 
+                        key={link.path} 
+                        to={link.path} 
+                        className="dropdown-item"
+                        onClick={() => setIsDropdownOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
 
             {/* CTA Buttons */}
             <motion.div
@@ -173,14 +236,69 @@ const Home = () => {
         /* ── 3D Canvas — fixed square straddling hero bottom + about top ── */
         .hero-3d-bg {
           position: absolute;
-          top: 20%;         /* starts partway into the hero */
-          right: -80px;
-          width: 620px;
-          height: 620px;
+          top: 10%;
+          right: 0;
+          width: 800px;
+          height: 800px;
           z-index: 0;
           opacity: 0.85;
         }
         .hero-orb-mobile { display: none; }
+
+        /* ── Nav Dropdown ── */
+        .nav-dropdown-container {
+          display: none; /* Hide on desktop */
+          position: relative;
+          margin-bottom: 20px;
+          z-index: 10;
+          pointer-events: auto;
+        }
+        .dropdown-trigger {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 10px 20px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--color-border);
+          border-radius: 12px;
+          color: #fff;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s;
+          font-size: 0.9rem;
+        }
+        .dropdown-trigger:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: var(--color-primary);
+        }
+        .dropdown-menu {
+          position: absolute;
+          top: calc(100% + 8px);
+          left: 50%;
+          transform: translateX(-50%);
+          width: 180px;
+          background: rgba(10, 10, 26, 0.9);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+        .dropdown-item {
+          display: block;
+          padding: 12px 20px;
+          color: var(--color-text-secondary);
+          font-size: 0.9rem;
+          transition: all 0.2s;
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .dropdown-item:last-child { border-bottom: none; }
+        .dropdown-item:hover {
+          background: var(--color-surface-hover);
+          color: #fff;
+          padding-left: 25px;
+        }
 
         /* ── Hero Layout ── */
         .hero-wrapper {
@@ -282,9 +400,9 @@ const Home = () => {
         }
 
         /* ════════════════════════════
-           MOBILE  ≤ 768px
+           MOBILE & TABLET ≤ 968px
            ════════════════════════════ */
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
           /* Hide heavy 3D canvas on mobile */
           .hero-3d-bg { display: none !important; }
 
@@ -336,6 +454,9 @@ const Home = () => {
           }
 
           .hero-socials { justify-content: center; margin-top: 24px; }
+
+          /* Show dropdown only on mobile/tablet where desktop nav is hidden */
+          .nav-dropdown-container { display: block; }
 
           /* About Card */
           .about-card { margin-top: 40px; padding: 28px 16px; }
