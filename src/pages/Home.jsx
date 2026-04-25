@@ -26,7 +26,7 @@ const FloatingShape = () => {
   });
 
   return (
-    <Sphere args={[1, 100, 200]} scale={2.6} ref={meshRef}>
+    <Sphere args={[1, 100, 200]} scale={2.5} ref={meshRef}>
       <MeshDistortMaterial
         color="#7928ca"
         attach="material"
@@ -128,17 +128,17 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55 }}
             >
-              <button 
+              <button
                 className="dropdown-trigger"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
                 <span>Home</span>
                 <ChevronDown size={16} style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
               </button>
-              
+
               <AnimatePresence>
                 {isDropdownOpen && (
-                  <motion.div 
+                  <motion.div
                     className="dropdown-menu"
                     initial={{ opacity: 0, y: 10, scale: 0.95, x: "-50%" }}
                     animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
@@ -146,9 +146,9 @@ const Home = () => {
                     transition={{ duration: 0.2 }}
                   >
                     {navLinks.filter(link => link.label !== 'Home').map((link) => (
-                      <Link 
-                        key={link.path} 
-                        to={link.path} 
+                      <Link
+                        key={link.path}
+                        to={link.path}
                         className="dropdown-item"
                         onClick={() => setIsDropdownOpen(false)}
                       >
