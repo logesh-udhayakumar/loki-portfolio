@@ -19,17 +19,17 @@ const projectsData = [
     title: "AI Chat-bot",
     desc: "AI-powered chatbot application designed to understand user queries and provide intelligent, context-aware responses. Built to automate interactions, improve user engagement, and deliver efficient real-time support using modern AI tools.",
     tech: ["LLM APIs", "Node.js", "PostgreSQL"],
-    github: "https://github.com/logesh-udhayakumar/chat-bot",
-    demo: "#",
+    github: "https://github.com/logesh-udhayakumar/aria-chatbot",
+    demo: "https://aria-chatbot-eta.vercel.app/",
     color: "#ff0080"
   },
   {
     id: 3,
-    title: "Wow Deals",
-    desc: "E-commerce web application similar to Flipkart, enabling users to browse products, manage carts, and place orders through a streamlined interface. Includes features like product listing, search, order management, and secure checkout to simulate a complete online shopping experience.",
+    title: "Weather Dashboard",
+    desc: "A Weather Dashboard is a simple interface that shows current weather conditions and forecasts for a specific location. It typically displays details like temperature, humidity, wind speed, and chances of rain, along with hourly or weekly predictions. It helps users quickly understand weather conditions and plan their day accordingly.",
     tech: ["React", "Node.js", "PostgreSQL"],
-    github: "https://github.com/logesh-udhayakumar/wow-deals",
-    demo: "#",
+    github: "https://github.com/logesh-udhayakumar/weather_dashboard",
+    demo: "https://weatherboard-ecru.vercel.app/",
     color: "#00f0ff"
   }
 ];

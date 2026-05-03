@@ -104,10 +104,10 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              style={{ fontSize: 'clamp(2rem, 9vw, 4.8rem)', lineHeight: '1.1', marginBottom: '16px' }}
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: '1.1', marginBottom: '16px' }}
             >
               <span style={{ whiteSpace: 'nowrap' }}>Logesh</span><br />
-              <span className="text-gradient-primary" style={{ whiteSpace: 'nowrap' }}>Udhayakumar</span>
+              <span className="text-gradient-primary" style={{ display: 'inline-block' }}>Udhayakumar</span>
             </motion.h1>
 
             <motion.p
@@ -237,9 +237,9 @@ const Home = () => {
         .hero-3d-bg {
           position: absolute;
           top: 10%;
-          right: 0;
-          width: 800px;
-          height: 800px;
+          right: -5%;
+          width: clamp(400px, 50vw, 800px);
+          height: clamp(400px, 50vw, 800px);
           z-index: 0;
           opacity: 0.85;
         }
@@ -311,7 +311,10 @@ const Home = () => {
           pointer-events: none; /* pass mouse events through to the canvas */
         }
         .hero-content {
+          position: relative;
+          z-index: 2;
           width: 55%;         /* occupy left half; canvas lives on the right */
+          min-width: 320px;
           display: flex;
           flex-direction: column;
           pointer-events: none; /* pass clicks through to canvas */
