@@ -5,7 +5,7 @@ import { FileText, Eye, Download, Info, Maximize2, X } from 'lucide-react';
 
 const Resume = () => {
   const [showPreview, setShowPreview] = useState(false);
-  const resumeGoogleDriveId = '1KYhXBABoxp4VzlPbNdwcPNEsMF2TnNjl';
+  const resumeGoogleDriveId = '1boqAFeASgeg2gflQIrDqOE9K-Zfsdco6';
 
   // Links
   const viewLink = `https://drive.google.com/file/d/${resumeGoogleDriveId}/view?usp=sharing`;
